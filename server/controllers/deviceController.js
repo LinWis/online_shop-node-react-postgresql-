@@ -1,4 +1,4 @@
-const {Device, DeviceInfo} = require('../models/models')
+const {Device, DeviceInfo, Brand} = require('../models/models')
 const ApiError = require("../error/ApiError");
 const uuid = require('uuid')
 const path = require('path')
@@ -14,8 +14,6 @@ class deviceController {
             const device = await Device.create({name, price, brandId, typeId, img: fileName})
 
             if (info) {
-                console.log(info) //Для теста
-
                 info = JSON.parse(info)
                 info.forEach(i => {
                     DeviceInfo.create({
@@ -36,21 +34,30 @@ class deviceController {
     async getAll(req, res) {
         let {brandId, typeId, limit, page} = req.query
         page = page || 1
-        limit = limit || 9
+        limit = limit || 10
         let offset = (page - 1) * limit
         let devices;
         if (!brandId && !typeId) {
-            devices = await Device.findAndCountAll({limit, offset})
+            devices = await Device.findAndCountAll({
+                limit, offset
+            })
         }
         else if (brandId && !typeId) {
-            devices = await Device.findAndCountAll({where: {brandId}, limit, offset})
+            devices = await Device.findAndCountAll({
+                where: {brandId}, limit, offset
+            })
         }
         else if (!brandId && typeId) {
-            devices = await Device.findAndCountAll({where: {typeId}, limit, offset})
+            devices = await Device.findAndCountAll({
+                where: {typeId}, limit, offset
+            })
         }
         else {
-            devices = await Device.findAndCountAll({where: {typeId, brandId}, limit, offset})
+            devices = await Device.findAndCountAll({
+                where: {typeId, brandId}, limit, offset
+            })
         }
+
         return res.json(devices)
     }
 

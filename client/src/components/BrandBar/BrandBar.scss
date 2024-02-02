@@ -1,0 +1,8 @@
+.card__item__brand {
+
+  transition: border 0.2s linear;
+
+  &:hover {
+    border: orange 1px solid;
+  }
+}

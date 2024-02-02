@@ -1,0 +1,10 @@
+.item__card {
+  box-shadow: none;
+  transition: box-shadow 0.2s linear, transform 0.2s linear;
+}
+.item__card:hover {
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/*# sourceMappingURL=DeviceItem.css.map */

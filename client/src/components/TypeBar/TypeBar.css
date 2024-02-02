@@ -1,0 +1,8 @@
+.list__item__type {
+  transition: background-color 0.2s linear;
+}
+.list__item__type:hover {
+  background-color: lightgrey;
+}
+
+/*# sourceMappingURL=TypeBar.css.map */

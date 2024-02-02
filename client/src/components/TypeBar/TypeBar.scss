@@ -1,0 +1,8 @@
+.list__item__type {
+
+  transition: background-color 0.2s linear;
+
+  &:hover {
+    background-color: lightgrey;
+  }
+}
